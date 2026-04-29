@@ -1,0 +1,79 @@
+startDelaySeconds: 10
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true
+
+rules:
+  - pattern: 'java.lang<type=Memory><HeapMemoryUsage>(used|committed|max):'
+    name: jvm_memory_heap_$1_bytes
+    type: GAUGE
+
+  - pattern: 'java.lang<type=Memory><NonHeapMemoryUsage>(used|committed|max):'
+    name: jvm_memory_nonheap_$1_bytes
+    type: GAUGE
+
+  - pattern: 'kafka.connect<type=source-task-metrics, connector=(.+), task=(.+)><>(source-record-poll-total)'
+    name: kafka_connect_source_task_source_record_poll_total
+    labels:
+      connector: '$1'
+      task: '$2'
+    type: COUNTER
+
+  - pattern: 'kafka.connect<type=source-task-metrics, connector=(.+), task=(.+)><>(source-record-write-total)'
+    name: kafka_connect_source_task_source_record_write_total
+    labels:
+      connector: '$1'
+      task: '$2'
+    type: COUNTER
+
+  - pattern: 'kafka.connect<type=source-task-metrics, connector=(.+), task=(.+)><>(poll-batch-avg-time-ms)'
+    name: kafka_connect_source_task_poll_batch_avg_time_ms
+    labels:
+      connector: '$1'
+      task: '$2'
+    type: GAUGE
+
+  - pattern: 'kafka.connect<type=sink-task-metrics, connector=(.+), task=(.+)><>(sink-record-read-total)'
+    name: kafka_connect_sink_task_sink_record_read_total
+    labels:
+      connector: '$1'
+      task: '$2'
+    type: COUNTER
+
+  - pattern: 'kafka.connect<type=sink-task-metrics, connector=(.+), task=(.+)><>(sink-record-send-total)'
+    name: kafka_connect_sink_task_sink_record_send_total
+    labels:
+      connector: '$1'
+      task: '$2'
+    type: COUNTER
+
+  - pattern: 'kafka.connect<type=sink-task-metrics, connector=(.+), task=(.+)><>(put-batch-avg-time-ms)'
+    name: kafka_connect_sink_task_put_batch_avg_time_ms
+    labels:
+      connector: '$1'
+      task: '$2'
+    type: GAUGE
+
+  - pattern: 'kafka.producer<type=producer-metrics, client-id=(.+)><>(record-size-avg)'
+    name: kafka_producer_record_size_avg
+    labels:
+      client_id: '$1'
+    type: GAUGE
+
+  - pattern: 'kafka.producer<type=producer-metrics, client-id=(.+)><>(batch-size-avg)'
+    name: kafka_producer_batch_size_avg
+    labels:
+      client_id: '$1'
+    type: GAUGE
+
+  - pattern: 'kafka.producer<type=producer-metrics, client-id=(.+)><>(records-per-request-avg)'
+    name: kafka_producer_records_per_request_avg
+    labels:
+      client_id: '$1'
+    type: GAUGE
+
+  - pattern: 'kafka.producer<type=producer-topic-metrics, client-id=(.+), topic=(.+)><>(record-send-rate)'
+    name: kafka_producer_topic_record_send_rate
+    labels:
+      client_id: '$1'
+      topic: '$2'
+    type: GAUGE

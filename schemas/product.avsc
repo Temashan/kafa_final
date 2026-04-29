@@ -1,0 +1,176 @@
+{
+  "type": "record",
+  "name": "Product",
+  "namespace": "shop",
+  "fields": [
+    {
+      "name": "product_id",
+      "type": "string"
+    },
+
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "default": null
+    },
+
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "default": null
+    },
+
+    {
+      "name": "price",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "Price",
+          "fields": [
+            {
+              "name": "amount",
+              "type": ["null", "double"],
+              "default": null
+            },
+            {
+              "name": "currency",
+              "type": ["null", "string"],
+              "default": null
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "category",
+      "type": ["null", "string"],
+      "default": null
+    },
+
+    {
+      "name": "brand",
+      "type": ["null", "string"],
+      "default": null
+    },
+
+    {
+      "name": "stock",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "Stock",
+          "fields": [
+            {
+              "name": "available",
+              "type": ["null", "int"],
+              "default": null
+            },
+            {
+              "name": "reserved",
+              "type": ["null", "int"],
+              "default": null
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "sku",
+      "type": ["null", "string"],
+      "default": null
+    },
+
+    {
+      "name": "tags",
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": "string"
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "images",
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": {
+            "type": "record",
+            "name": "Image",
+            "fields": [
+              {
+                "name": "url",
+                "type": ["null", "string"],
+                "default": null
+              },
+              {
+                "name": "alt",
+                "type": ["null", "string"],
+                "default": null
+              }
+            ]
+          }
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "specifications",
+      "type": [
+        "null",
+        {
+          "type": "map",
+          "values": "string"
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "created_at",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "updated_at",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null
+    },
+
+    {
+      "name": "index",
+      "type": ["null", "string"],
+      "default": null
+    },
+
+    {
+      "name": "store_id",
+      "type": ["null", "string"],
+      "default": null
+    }
+  ]
+}

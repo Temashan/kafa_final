@@ -1,0 +1,22 @@
+[project]
+name = "finalkfkyandex"
+version = "0.1.0"
+description = "Kafka streaming pipeline"
+requires-python = ">=3.11,<3.12"
+
+dependencies = [
+    "faust-streaming==0.11.3",
+    "aiokafka==0.11.0",
+    "confluent-kafka==2.3.0",
+    "requests==2.32.3",
+    "fastavro==1.9.4",
+    "ijson==3.2.3",
+    "httpx==0.27.0",
+    "authlib==1.3.0",
+    "cachetools==5.3.3",
+    "certifi==2024.2.2",
+    "pyspark==4.1.1",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,27 @@
+kafka:
+  clusters:
+    - name: primary
+      bootstrapServers: kafka-0:9092,kafka-1:9092,kafka-2:9092
+      schemaRegistry: http://schema-registry:8081
+      readOnly: false
+      properties:
+        security.protocol: SASL_SSL
+        sasl.mechanism: PLAIN
+        sasl.jaas.config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-password";'
+        ssl.truststore.location: /etc/kafkaui/certs/kafka.truststore.jks
+        ssl.truststore.password: "123456"
+        ssl.truststore.type: JKS
+        ssl.endpoint.identification.algorithm: HTTPS
+
+    - name: dr
+      bootstrapServers: dr-kafka-0:9092
+      schemaRegistry: http://schema-registry:8081
+      readOnly: false
+      properties:
+        security.protocol: SASL_SSL
+        sasl.mechanism: PLAIN
+        sasl.jaas.config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-password";'
+        ssl.truststore.location: /etc/kafkaui/certs/kafka.truststore.jks
+        ssl.truststore.password: "123456"
+        ssl.truststore.type: JKS
+        ssl.endpoint.identification.algorithm: HTTPS

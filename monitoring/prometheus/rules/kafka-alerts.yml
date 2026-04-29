@@ -1,0 +1,11 @@
+groups:
+  - name: kafka-broker-health
+    rules:
+      - alert: KafkaBrokerDown
+        expr: (up{job="kafka-jmx", cluster="primary"} == 0) or on (job, instance, cluster, broker) (jmx_scrape_error{job="kafka-jmx", cluster="primary"} == 1)
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Kafka broker is down"
+          description: "Kafka JMX is unavailable for {{ $labels.broker }} for more than 1 minute."
