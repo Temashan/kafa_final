@@ -19,7 +19,6 @@
 
     "behavior.on.null.values": "delete",
 
-    "errors.tolerance": "all",
     "errors.log.enable": "true",
     "errors.log.include.messages": "true"
   }
